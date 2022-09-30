@@ -1,0 +1,18 @@
+<nav>
+    {% url 'home' as home_url %}
+    <span>{% if request.path == home_url %}Home{% else %}<a href="{{ home_url }}">Home</a>{% endif %}</span>
+
+    <span style="float:right">
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <span>hi admin</span>
+            {% else %}
+                <span>hi nonsuper</span>
+            {% endif %}
+            <span><a href="{% url 'logout' %}">Logout</a></span>
+        {% else %}
+            <span><a href="{% url 'login' %}">Login</a></span>
+        {% endif %}
+    </span>
+
+</nav>
